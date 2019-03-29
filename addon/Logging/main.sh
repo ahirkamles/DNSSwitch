@@ -39,14 +39,14 @@ if [ -d /cache ]; then CACHELOC=/cache; else CACHELOC=/data/cache; fi
 chmod -R 0755 $TMPDIR/addon/Logging
 cp -R $TMPDIR/addon/Logging $UF/tools 2>/dev/null
 PATH=$UF/tools/Logging/:$PATH
-cp -f $UF/tools/Logging/main.sh $MOUNTEDROOT/logging.sh
-sed -i "1i $SHEBANG" $UNITY/logging.sh
-sed -i "s|\$TMPDIR|$MOUNTEDROOT|g" $MODPATH/logging.sh
-sed -i "s|\$MODPATH|$MOUNTEDROOT|g" $MODPATH/logging.sh
-sed -i "s|\$INSTLOG|\$LOG|g" $MODPATH/logging.sh
-sed -i "39,49d" $MODPATH/logging.sh
-chmod 0755 $MODPATH/logging.sh
-chown 0.2000 $MODPATH/logging.sh
+cp_ch -n $UF/tools/Logging/main.sh $MODULEROOT/$MODID/logging.sh
+sed -i "1i $SHEBANG" $MODULEROOT/$MODID/logging.sh
+sed -i "s|\$TMPDIR|$MOUNTEDROOT|g" $MODULEROOT/$MODID/logging.sh
+sed -i "s|\$MODPATH|$MOUNTEDROOT|g" $MODULEROOT/$MODID/logging.sh
+sed -i "s|\$INSTLOG|\$LOG|g" $MODULEROOT/$MODID/logging.sh
+sed -i "39,49d" $MODULEROOT/$MODID/logging.sh
+chmod 0755 $MODULEROOT/$MODID/logging.sh
+chown 0.2000 $MODULEROOT/$MODID/logging.sh
 
 log_handler() {
 	echo "" >> $INSTLOG
@@ -129,6 +129,7 @@ if $MAGISK; then
 	log_print " Collecting Modules Installed "
   echo "==========================================" >> $INSTLOG 2>&1
   ls $MODULEROOT >> $INSTLOG 2>&1
+  ls $MOUNTEDROOT >> $INSTLOG 2>&1
   log_print " Collecting Logs for Installed Files "
   echo "==========================================" >> $INSTLOG 2>&1
   log_handler "$(du -ah $MODPATH)" >> $INSTLOG 2>&1

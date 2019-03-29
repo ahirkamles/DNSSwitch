@@ -502,7 +502,7 @@ exit
 get_crypt () {
 VERSION=
 
-wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/2.0.19/dnscrypt-proxy-android_$ARCH-$VERSION.zip
+wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/*/dnscrypt-proxy-android_$ARCH-$VERSION.zip
 
 dnscrypt-proxy-android_arm64-2.0.17.zip
 
@@ -528,11 +528,11 @@ dnscrypt_menu (){
   read -r answer
 if [ "$choice" = "y" ] || [ "$choice" = "Y" ] || [ "$choice" = "yes" ] || [ "$choice" = "Yes" ] || [ "$choice" = "YES" ]; then
   if [ "$ARCH" = "x64" ]; then
-  wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/2.0.19/dnscrypt-proxy-android_x86_64-2.0.19.zip
+  wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/*/dnscrypt-proxy-android_x86_64-2.0.19.zip
   elif [ "$ARCH" = "x86" ]; then
-  wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/2.0.19/dnscrypt-proxy-android_i386-2.0.19.zip
+  wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/*/dnscrypt-proxy-android_i386-2.0.19.zip
   else
-  wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/2.0.19/dnscrypt-proxy-android_$ARCH-2.0.19.zip
+  wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/*/dnscrypt-proxy-android_$ARCH-2.0.19.zip
   fi
   
   echo ""
@@ -839,9 +839,7 @@ done
 
 case $1 in
 -c|-C) shift
-echo "NOT YET AVAILABLE"
-sleep 2
-menu;;
+  dns_menu;;
 -r|-R) shift
   for i in "$@"; do
   dns_remove

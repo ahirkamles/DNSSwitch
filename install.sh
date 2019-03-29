@@ -10,8 +10,8 @@
 ##########################################################################################
 
 if [ -z $UF ]; then
-  UF=$TMPDIR/META-INF/com/google/android/unityfiles
-  unzip -oq "$ZIPFILE" 'META-INF/com/google/android/unityfiles/util_functions.sh' -d $TMPDIR >&2
+  UF=$TMPDIR/common/unityfiles
+  unzip -oq "$ZIPFILE" 'common/unityfiles/util_functions.sh' -d $TMPDIR >&2
   [ -f "$UF/util_functions.sh" ] || { ui_print "! Unable to extract zip file !"; exit 1; }
   . $UF/util_functions.sh
 fi
@@ -33,7 +33,7 @@ comp_check
 #DEBUG=true
 
 # Uncomment if you do *NOT* want Magisk to mount any files for you. Most modules would NOT want to set this flag to true
-# This is obviously irrelevant for system installs
+# This is obviously irrelevant for system installs. This will be set to true automatically if your module has no files in system
 #SKIPMOUNT=true
 
 ##########################################################################################
